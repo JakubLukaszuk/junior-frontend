@@ -1,0 +1,39 @@
+.AutoImageSlider.slider{
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    margin: 40px 10px 0 10px;
+    width:  calc(100vw - 10px);
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+.AutoImageSlider.shadow{
+    display: block;
+    box-shadow: 20px 20px 100px 150px rgba(255, 255, 255, 0.9);
+    width: 0px;
+    height: 100%;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+}
+
+.AutoImageSlider.shadow.right{
+    top: 0;
+    left: -5%;
+}
+
+.AutoImageSlider.shadow.left{
+    top: 0;
+    right: -5%;
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 768px) {
+    .AutoImageSlider.shadow{
+        display: none;
+    }
+ }

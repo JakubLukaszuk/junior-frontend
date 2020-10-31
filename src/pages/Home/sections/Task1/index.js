@@ -4,6 +4,9 @@ import { ExamplePreview } from "components/ExamplePreview";
 import * as Section from "components/PageSection";
 
 import previewImg from "./assets/slider.gif";
+import AutoImageSlider from "components/AutoImageSlider/AutoImageSlider";
+
+const images = ['slide-1.jpg','slide-2.jpg','slide-3.jpg','slide-4.jpg','slide-5.jpg','slide-6.jpg']
 
 export const Task1 = () => (
   <Section.Wrapper>
@@ -31,6 +34,7 @@ export const Task1 = () => (
           Place your slider below this paragraph.
         </Section.Description>
       </Section.Header>
+      <AutoImageSlider imageNamesArray = {images} imagesFitsToScreenWidth={true}/>
       {/* Please, put your `<Slider />` component here. */}
     </Section.Content>
   </Section.Wrapper>
