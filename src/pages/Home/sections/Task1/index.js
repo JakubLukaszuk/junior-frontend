@@ -34,7 +34,7 @@ export const Task1 = () => (
           Place your slider below this paragraph.
         </Section.Description>
       </Section.Header>
-      <AutoImageSlider imageNamesArray = {images} imagesFitsToScreenWidth={true}/>
+      <AutoImageSlider imageNamesArray = {images} imagesFitsToScreenWidth={true} play={true}/>
       {/* Please, put your `<Slider />` component here. */}
     </Section.Content>
   </Section.Wrapper>
