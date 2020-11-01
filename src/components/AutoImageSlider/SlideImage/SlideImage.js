@@ -1,7 +1,7 @@
 import React , {useRef, useEffect}from 'react';
 
 const SlideImage = (props) => {
-    const {index, imageName, width, rightLeftPadding, move, screenWidth} = props;
+    const {index, imageName, width, rightLeftPadding, move, screenWidth,positionMultiplyer} = props;
     const slideImageRef = useRef(null);
 
     useEffect(()=>{
@@ -26,7 +26,7 @@ const SlideImage = (props) => {
     const containerStyle = {
         position: 'absolute',
         padding: `${rightLeftPadding}px`,
-        left: `${index*20}%`
+        left: `${index*positionMultiplyer}%`
     }
 
     const imageStyle = {
