@@ -16,7 +16,6 @@ const AutoImageSlider = (props) => {
     const getImageWidth = () => {
         if(imagesFitsToScreenWidth)
         {
-            console.log(calculateImageWidth());
             return calculateImageWidth()
         }
         return standardImageWidth;
