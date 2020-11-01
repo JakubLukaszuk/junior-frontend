@@ -1,18 +1,30 @@
 .NavigationItem {
-    margin: 0 auto;
+    margin: 20px auto;
     display: block;
     text-align: center;
 }
 
 .NavigationItem a {
     color: #000000;
+    display: inline-block;
+    overflow: hidden;
     text-decoration: none;
-    padding: 14px 10px;
+    padding: 8px 16px;
     font-weight: bold;
+    background: linear-gradient(to right, royalblue, royalblue 50%, #000000 50%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+    transition: background-position 275ms ease;
 }
 
+.NavigationItem a:hover {
+    background-position: 0 100%;
+}
 
 .NavigationItem a.active{
-    border: black 2px solid;
+    border-bottom: rgb(105, 105, 105) 1px solid;
 }
 

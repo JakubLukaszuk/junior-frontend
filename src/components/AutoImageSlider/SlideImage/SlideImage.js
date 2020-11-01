@@ -5,10 +5,22 @@ const SlideImage = (props) => {
     const slideImageRef = useRef(null);
 
     useEffect(()=>{
-            if(move){
-                startMoving();
+        const {loopAnimation, killAnimation} = getAnimationHandler();
+
+        const killAnimationSafely = () =>{
+            if(killAnimation!=null)
+            {
+                killAnimation()
             }
-    }, [])
+        }
+        if(move){
+            loopAnimation()
+        }
+        else{
+            killAnimationSafely()
+        }
+        return ()=>{killAnimationSafely()}
+    }, [move])
 
 
     const containerStyle = {
@@ -23,7 +35,7 @@ const SlideImage = (props) => {
         height: 'auto',
     }
 
-    const startMoving = ()=>{
+    const getAnimationHandler = ()=>{
         const slideImageStyle = slideImageRef.current.style;
 
         let amountPixToMove = screenWidth - slideImageRef.current.offsetLeft+rightLeftPadding*2;
@@ -36,23 +48,41 @@ const SlideImage = (props) => {
 
         const startAnimationVal = {left: `${slideImageRef.current.offsetLeft+amountPixToMove}px`}
 
-        const loopSlideAnimation = () => {
-            slideImageRef.current.animate(startAnimationVal,
-            {duration: fitstAnimationTime, easing: "linear", iterations: 1}).onfinish = function()
-            {
-                this.cancel();
-
-                slideImageStyle.left = `${-rightLeftPadding-width-rightLeftPadding}px`
-                slideImageRef.current.animate({left: startPostion},
-                {duration: secondAnimationTime, easing: "linear",  iterations: 1}).onfinish = function(){
-                    this.cancel();
-                    slideImageStyle.left = startPostion;
-                    loopSlideAnimation();
-                }
-            }
+        const slideImageAnimation = (positionToGo, duration, easing, iterationsNUmber)=> {
+            const animation = slideImageRef.current.animate(positionToGo,
+                {duration: duration, easing: easing, iterations: iterationsNUmber})
+            animation.pause();
+            return animation;
         }
-        loopSlideAnimation();
 
+        const onFinshFirstSlideAnimation = function(){
+            this.pause();
+            slideImageStyle.left = `${-rightLeftPadding-width-rightLeftPadding}px`
+            secondSlideAnimation.play();
+        }
+
+        const onFinshSecondSlideAnimation = function(){
+            this.pause();
+            slideImageStyle.left = startPostion;
+            firstSliedAnimation.play();
+        }
+
+       const firstSliedAnimation = slideImageAnimation(startAnimationVal, fitstAnimationTime, "linear", 1);
+       firstSliedAnimation.onfinish = onFinshFirstSlideAnimation;
+
+       const secondSlideAnimation = slideImageAnimation({left: startPostion}, secondAnimationTime, "linear", 1);
+       secondSlideAnimation.onfinish = onFinshSecondSlideAnimation;
+
+        const loopAnimation = () => {
+            firstSliedAnimation.play();
+        }
+
+        const killAnimation = () => {
+            firstSliedAnimation.cancel();
+            secondSlideAnimation.cancel();
+        }
+
+        return {killAnimation: killAnimation, loopAnimation: loopAnimation }
     }
 
     return (
