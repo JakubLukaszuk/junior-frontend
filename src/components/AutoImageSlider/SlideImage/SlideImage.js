@@ -36,7 +36,6 @@ const SlideImage = (props) => {
     }
 
     const getAnimationHandler = ()=>{
-        
         const slideImageStyle = slideImageRef.current.style;
 
         let amountPixToMove = Math.ceil(screenWidth - parseInt(slideImageStyle.left,10)+rightLeftPadding*2);
