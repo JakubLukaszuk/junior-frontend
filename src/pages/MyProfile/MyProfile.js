@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 
 import {getUserAsync} from '../../data/providers/userProvider';
-import ProfileCard from './ProfileCard/ProfileCard';
+import ProfileCard from '../../components/ProfileCard/ProfileCard';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import {getErrorMessage} from '../../utils/error';
 
@@ -35,7 +35,7 @@ const MyProfile = () => {
                 setIsLoading(false);
               })
            }, 800);
-    }, [])
+    }, [error,user,isLoading])
 
     return (
         <div className = {['MyProfile', 'wrapper'].join(' ')}>

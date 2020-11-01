@@ -26,7 +26,7 @@ const SlideImage = (props) => {
     const containerStyle = {
         position: 'absolute',
         padding: `${rightLeftPadding}px`,
-        left: `${index*positionMultiplyer}%`
+        left: `${index*positionMultiplyer}px`
     }
 
     const imageStyle = {
@@ -36,9 +36,10 @@ const SlideImage = (props) => {
     }
 
     const getAnimationHandler = ()=>{
+        
         const slideImageStyle = slideImageRef.current.style;
 
-        let amountPixToMove = screenWidth - slideImageRef.current.offsetLeft+rightLeftPadding*2;
+        let amountPixToMove = Math.ceil(screenWidth - parseInt(slideImageStyle.left,10)+rightLeftPadding*2);
 
         const moveRate = 150;   // pixels per second to move
         const fitstAnimationTime = amountPixToMove * 1000 / moveRate;
@@ -46,7 +47,7 @@ const SlideImage = (props) => {
         const startPostion = containerStyle.left;
         const secondAnimationTime =  (difference+width+rightLeftPadding*2) * 1000 / moveRate;
 
-        const startAnimationVal = {left: `${slideImageRef.current.offsetLeft+amountPixToMove}px`}
+        const startAnimationVal = {left: `${ parseInt(slideImageStyle.left,10)+amountPixToMove}px`}
 
         const slideImageAnimation = (positionToGo, duration, easing, iterationsNUmber)=> {
             const animation = slideImageRef.current.animate(positionToGo,
@@ -87,7 +88,7 @@ const SlideImage = (props) => {
 
     return (
         <div ref={slideImageRef} style = {containerStyle}>
-            <img style ={imageStyle} src = {`/assets/photos/${imageName}`} alt = "image of dog"/>
+            <img style ={imageStyle} src = {`/assets/photos/${imageName}`} alt = "dog"/>
         </div>
     )
 }
