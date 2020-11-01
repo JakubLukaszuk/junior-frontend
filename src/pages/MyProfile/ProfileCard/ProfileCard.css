@@ -1,0 +1,17 @@
+.ProfileCard.wrapper{
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ProfileCard.name{
+    margin: 5px 0;
+    font-size: 25px;
+}
+
+.ProfileCard.avatar{
+    width: 350px;
+    height: auto;
+    margin: 5px 0;
+    border-radius: 8px;
+}

@@ -1,0 +1,11 @@
+.MyProfile.error{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 30px;
+    color: #fc2003
+}
+.MyProfile.wrapper{
+    height: 100%;
+    margin-top: 150px;
+}
